@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PULSE — Digital Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080810;
+    --surface: #0f0f1a;
+    --card: #13131f;
+    --accent: #00ff88;
+    --accent2: #7c3aed;
+    --accent3: #ff3864;
+    --text: #f0f0f8;
+    --muted: #7070a0;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.18s ease, width 0.3s, height 0.3s, opacity 0.3s;
+    opacity: 0.5;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 60px;
+    backdrop-filter: blur(20px);
+    background: rgba(8,8,16,0.7);
+    border-bottom: 1px solid var(--border);
+    animation: fadeDown 0.8s ease both;
+  }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.88rem;
+    letter-spacing: 0.02em;
+    cursor: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,255,136,0.3); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 140px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(124,58,237,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(0,255,136,0.07) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,255,136,0.08);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 100px;
+    padding: 6px 16px 6px 8px;
+    margin-bottom: 36px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero-badge span { font-size: 0.78rem; color: var(--accent); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero h1 .line2 {
+    display: block;
+    -webkit-text-stroke: 1.5px rgba(240,240,248,0.3);
+    color: transparent;
+  }
+  .hero h1 .accent-word { color: var(--accent); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 44px;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    animation: fadeUp 0.8s 0.65s ease both;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: none;
+    transition: transform 0.2s, box-shadow 0.3s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,255,136,0.25); }
+  .btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--border);
+    background: transparent;
+    padding: 14px 32px;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+  .hero-float {
+    position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%);
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    width: 280px;
+    backdrop-filter: blur(10px);
+    position: relative;
+  }
+  .hero-card + .hero-card { margin-top: 16px; }
+  .hero-card-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .hero-card-value {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+  }
+  .hero-card-value span { color: var(--accent); }
+  .hero-card-sub { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+  .card-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 100px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+  .card-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 100px;
+    animation: barGrow 1.5s 1s ease both;
+  }
+  @keyframes barGrow { from{width:0} }
+
+  /* TICKER */
+  .ticker {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 60px;
+    animation: tick 20s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes tick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .ticker-item {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ticker-item .sep { color: var(--accent); font-size: 1rem; }
+
+  /* SECTIONS */
+  section { padding: 100px 60px; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* SERVICES */
+  .services { background: var(--surface); }
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(0,255,136,0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(0,255,136,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(0,255,136,0.08);
+    border: 1px solid rgba(0,255,136,0.15);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+  }
+  .service-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+  .service-card .tag {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .service-card.featured {
+    background: linear-gradient(135deg, #0d2b1e, #0a1628);
+    border-color: rgba(0,255,136,0.25);
+    grid-column: span 1;
+  }
+
+  /* STATS */
+  .stats { padding: 70px 60px; }
+  .stats-inner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-inner::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 500px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,255,136,0.06), transparent);
+  }
+  .stat-item { text-align: center; position: relative; }
+  .stat-item + .stat-item::before {
+    content: '';
+    position: absolute; left: -20px; top: 20%; bottom: 20%;
+    width: 1px; background: var(--border);
+  }
+  .stat-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 8px; }
+
+  /* PROCESS */
+  .process { background: var(--bg); }
+  .process-header { text-align: center; margin-bottom: 70px; }
+  .process-header .section-desc { margin: 0 auto; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 30px; left: 12.5%; right: 12.5%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+    opacity: 0.3;
+  }
+  .step { padding: 0 24px; text-align: center; position: relative; }
+  .step-num {
+    width: 60px; height: 60px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 auto 28px;
+    position: relative; z-index: 2;
+  }
+  .step h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* WHY US */
+  .why { background: var(--surface); }
+  .why-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .why-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .why-visual::after {
+    content: '';
+    position: absolute; bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(124,58,237,0.15), transparent);
+    border-radius: 50%;
+  }
+  .chart-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 20px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-name { font-size: 0.78rem; color: var(--muted); width: 70px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 100px; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    animation: barIn 1.2s cubic-bezier(.23,1,.32,1) both;
+  }
+  @keyframes barIn { from{width:0!important} }
+  .bar-pct { font-size: 0.78rem; color: var(--text); font-weight: 500; width: 36px; text-align: right; }
+
+  .why-points { display: flex; flex-direction: column; gap: 28px; margin-top: 36px; }
+  .why-point {
+    display: flex; gap: 16px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: border-color 0.3s;
+  }
+  .why-point:hover { border-color: rgba(0,255,136,0.2); }
+  .why-point-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(0,255,136,0.08);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .why-point h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .why-point p { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--bg); }
+  .testimonials-header { text-align: center; margin-bottom: 60px; }
+  .testimonials-header .section-desc { margin: 0 auto; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .testi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.12); }
+  .testi-stars { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 16px; }
+  .testi-quote { font-size: 0.92rem; color: var(--text); line-height: 1.7; font-weight: 300; font-style: italic; margin-bottom: 24px; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testi-name { font-weight: 500; font-size: 0.88rem; }
+  .testi-role { font-size: 0.77rem; color: var(--muted); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--surface);
+    padding: 100px 60px;
+  }
+  .cta-inner {
+    background: linear-gradient(135deg, #0c1f15, #0f0f20);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 28px;
+    padding: 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-inner::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(0,255,136,0.08), transparent);
+  }
+  .cta-inner h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .cta-inner p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 440px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .cta-actions { display: flex; justify-content: center; gap: 16px; position: relative; }
+  .input-group { display: flex; gap: 0; border-radius: 100px; overflow: hidden; border: 1px solid var(--border); background: var(--bg); }
+  .email-input {
+    background: transparent;
+    border: none;
+    padding: 14px 24px;
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    width: 260px;
+    outline: none;
+  }
+  .email-input::placeholder { color: var(--muted); }
+  .input-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .input-btn:hover { background: #00e077; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 60px 60px 40px;
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer-brand { max-width: 280px; }
+  .footer-brand .logo { font-size: 1.4rem; display: block; margin-bottom: 12px; }
+  .footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .footer-col h6 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 0.88rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--text); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 0.78rem; color: var(--muted); }
+  .footer-socials { display: flex; gap: 14px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,255,136,0.06); }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 60px; }
+    .hero-float { display: none; }
+    section { padding: 70px 24px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2,1fr); }
+    .steps { grid-template-columns: repeat(2,1fr); gap: 32px; }
+    .steps::before { display: none; }
+    .why-inner { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .cta-inner { padding: 48px 24px; }
+    .footer-top { flex-direction: column; gap: 40px; }
+    .footer-links { grid-template-columns: repeat(2,1fr); }
+    .stats { padding: 50px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">PUL<span>S</span>E</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Results</a></li>
+  </ul>
+  <button class="nav-cta">Get Started →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span>Now accepting new clients for 2025</span>
+    </div>
+    <h1>
+      We Grow<br>
+      <span class="line2">Brands That</span><br>
+      <span class="accent-word">Matter.</span>
+    </h1>
+    <p class="hero-desc">
+      Full-spectrum digital marketing — SEO, paid ads, social media, and content that drives measurable growth for ambitious brands.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Start Growing ↗</button>
+      <button class="btn-ghost">See Our Work</button>
+    </div>
+  </div>
+  <div class="hero-float">
+    <div class="hero-card">
+      <div class="hero-card-label">Avg. ROAS Improvement</div>
+      <div class="hero-card-value"><span>4.8</span>×</div>
+      <div class="hero-card-sub">across all paid campaigns</div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:88%"></div></div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-label">Clients Revenue Generated</div>
+      <div class="hero-card-value">$<span>24M</span></div>
+      <div class="hero-card-sub">in the last 12 months</div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="sep">✦</span> SEO Optimization</span>
+    <span class="ticker-item"><span class="sep">✦</span> Paid Social Advertising</span>
+    <span class="ticker-item"><span class="sep">✦</span> Content Strategy</span>
+    <span class="ticker-item"><span class="sep">✦</span> Google Ads Management</span>
+    <span class="ticker-item"><span class="sep">✦</span> Brand Identity</span>
+    <span class="ticker-item"><span class="sep">✦</span> Email Marketing</span>
+    <span class="ticker-item"><span class="sep">✦</span> Analytics & Reporting</span>
+    <span class="ticker-item"><span class="sep">✦</span> Conversion Optimization</span>
+    <span class="ticker-item"><span class="sep">✦</span> SEO Optimization</span>
+    <span class="ticker-item"><span class="sep">✦</span> Paid Social Advertising</span>
+    <span class="ticker-item"><span class="sep">✦</span> Content Strategy</span>
+    <span class="ticker-item"><span class="sep">✦</span> Google Ads Management</span>
+    <span class="ticker-item"><span class="sep">✦</span> Brand Identity</span>
+    <span class="ticker-item"><span class="sep">✦</span> Email Marketing</span>
+    <span class="ticker-item"><span class="sep">✦</span> Analytics & Reporting</span>
+    <span class="ticker-item"><span class="sep">✦</span> Conversion Optimization</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div>
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Services built<br>for real growth</h2>
+    </div>
+    <p class="section-desc">We don't believe in vanity metrics. Every service we offer is designed to move the needle on your bottom line.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card featured reveal">
+      <div class="service-icon">🔍</div>
+      <h3>Search Engine Optimization</h3>
+      <p>Dominate organic search with data-driven keyword strategy, technical audits, and authoritative link building that lasts.</p>
+      <span class="tag">→ Free SEO Audit</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📣</div>
+      <h3>Paid Advertising</h3>
+      <p>Google, Meta, LinkedIn & TikTok ads managed by certified specialists. We optimize for conversions, not just clicks.</p>
+      <span class="tag">→ Avg. 4.8× ROAS</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">✍️</div>
+      <h3>Content Marketing</h3>
+      <p>Strategic content that educates, engages, and converts. From blog posts to video scripts — crafted to rank and resonate.</p>
+      <span class="tag">→ Full Content Calendar</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📱</div>
+      <h3>Social Media Marketing</h3>
+      <p>Build a community that buys. We handle strategy, creation, and management across all major platforms.</p>
+      <span class="tag">→ Organic + Paid</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📧</div>
+      <h3>Email & CRM Automation</h3>
+      <p>Turn subscribers into loyal customers with automated sequences, personalized flows, and retention campaigns.</p>
+      <span class="tag">→ 40%+ Open Rates</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📊</div>
+      <h3>Analytics & CRO</h3>
+      <p>Unlock hidden revenue through conversion rate optimization. We test, iterate, and scale what actually works.</p>
+      <span class="tag">→ Data-First Approach</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner reveal">
+    <div class="stat-item">
+      <div class="stat-num"><span>250</span>+</div>
+      <div class="stat-label">Clients Served Globally</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>$24</span>M</div>
+      <div class="stat-label">Revenue Generated</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>98</span>%</div>
+      <div class="stat-label">Client Retention Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span>4.8</span>×</div>
+      <div class="stat-label">Average ROAS Delivered</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header reveal">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">From zero to<br>full velocity</h2>
+    <p class="section-desc">A proven 4-step system that takes your brand from strategy to sustained growth in 90 days.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h4>Discovery & Audit</h4>
+      <p>We deep-dive into your brand, competitors, and market to uncover the biggest growth levers.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h4>Strategy Sprint</h4>
+      <p>A custom growth roadmap is built — channel mix, budget allocation, messaging and KPIs.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h4>Launch & Execute</h4>
+      <p>Campaigns go live. Every asset, ad, and automation is crafted for maximum impact from day one.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h4>Optimize & Scale</h4>
+      <p>Weekly reporting, continuous testing, and aggressive scaling of what's working.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="why-visual reveal">
+      <div class="chart-label">Performance Benchmark — Our Clients vs Industry Avg.</div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-name">Organic Traffic</span>
+          <div class="bar-track"><div class="bar-fill" style="width:87%"></div></div>
+          <span class="bar-pct">+87%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Lead Quality</span>
+          <div class="bar-track"><div class="bar-fill" style="width:74%"></div></div>
+          <span class="bar-pct">+74%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Ad ROAS</span>
+          <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+          <span class="bar-pct">+92%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Email Rev.</span>
+          <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+          <span class="bar-pct">+68%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Conversion</span>
+          <div class="bar-track"><div class="bar-fill" style="width:81%"></div></div>
+          <span class="bar-pct">+81%</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="section-label">Why PULSE</span>
+      <h2 class="section-title">We're not an agency.<br>We're your growth team.</h2>
+      <p class="section-desc" style="margin-bottom:0">No account managers playing telephone. You work directly with the strategists executing your campaigns.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-point-icon">⚡</div>
+          <div>
+            <h5>Speed to Market</h5>
+            <p>Campaigns launch within 7 days of onboarding. No bloated processes or approval chains.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">🎯</div>
+          <div>
+            <h5>Performance Guarantees</h5>
+            <p>We're so confident in our work, we offer a 60-day performance guarantee on all ad campaigns.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-point-icon">🔬</div>
+          <div>
+            <h5>Data-Driven Everything</h5>
+            <p>Every decision is backed by attribution data, A/B tests, and real business outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header reveal">
+    <span class="section-label">Client Results</span>
+    <h2 class="section-title">Real brands, real growth</h2>
+    <p class="section-desc">Don't take our word for it — here's what our clients have to say.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"PULSE tripled our organic traffic in 6 months. Their SEO strategy was unlike anything we'd seen — methodical, creative, and incredibly effective."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SK</div>
+        <div>
+          <div class="testi-name">Sarah Kim</div>
+          <div class="testi-role">CMO, Novu Health</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"We went from burning $40k/mo on ads with a 1.2× ROAS to 5.6× in 90 days. The team genuinely cares about your numbers, not just theirs."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MR</div>
+        <div>
+          <div class="testi-name">Marcus Reid</div>
+          <div class="testi-role">Founder, Driftline Co.</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"The email automation flows they built generate $80k/month on autopilot. Best marketing investment we've ever made. Period."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AL</div>
+        <div>
+          <div class="testi-name">Aisha Laurent</div>
+          <div class="testi-role">CEO, Luxe Botanics</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <h2>Ready to grow<br><span style="color:var(--accent)">faster than ever?</span></h2>
+    <p>Join 250+ brands who've trusted PULSE to scale their digital presence. Let's start with a free strategy call.</p>
+    <div class="cta-actions">
+      <div class="input-group">
+        <input class="email-input" type="email" placeholder="Enter your work email">
+        <button class="input-btn">Get Free Audit →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="logo" href="#">PUL<span>S</span>E</a>
+      <p>Full-spectrum digital marketing for brands ready to grow beyond their limits.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h6>Services</h6>
+        <ul>
+          <li><a href="#">SEO</a></li>
+          <li><a href="#">Paid Ads</a></li>
+          <li><a href="#">Social Media</a></li>
+          <li><a href="#">Content</a></li>
+          <li><a href="#">Email</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>Company</h6>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h6>Legal</h6>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Cookie Settings</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 PULSE Agency. All rights reserved.</span>
+    <div class="footer-socials">
+      <a class="social-link" href="#">𝕏</a>
+      <a class="social-link" href="#">in</a>
+      <a class="social-link" href="#">▶</a>
+      <a class="social-link" href="#">◎</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animateRing); }
+  animateRing();
+
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  // Counter Animation
+  function animateCounter(el, end, suffix='') {
+    let start = 0;
+    const duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const val = end < 10 ? (ease * end).toFixed(1) : Math.round(ease * end);
+      el.textContent = val + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.stat-num span');
+        nums.forEach(n => {
+          const text = n.textContent;
+          const val = parseFloat(text);
+          animateCounter(n, val);
+        });
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const statsEl = document.querySelector('.stats-inner');
+  if (statsEl) statsObserver.observe(statsEl);
+</script>
+</body>
+</html>
