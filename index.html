@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naukri Clone - Job Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <div class="logo">naukri<span>.clone</span></div>
+      <nav>
+        <a href="#">Jobs</a>
+        <a href="#">Companies</a>
+        <a href="#">Services</a>
+        <a href="#">Resources</a>
+      </nav>
+      <div class="auth">
+        <button class="btn ghost">Login</button>
+        <button class="btn primary">Register</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Find your dream job now</h1>
+      <p>Search jobs from top companies across India</p>
+      <div class="search-card">
+        <input id="keyword" type="text" placeholder="Skills, Designations, Companies" />
+        <input id="location" type="text" placeholder="Location" />
+        <select id="experience">
+          <option value="">Experience</option>
+          <option>Fresher</option>
+          <option>1-3 years</option>
+          <option>3-5 years</option>
+          <option>5+ years</option>
+        </select>
+        <button id="searchBtn" class="btn primary">Search Jobs</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="container layout">
+    <aside class="filters">
+      <h3>Filters</h3>
+      <label><input type="checkbox" class="filter-type" value="Remote" /> Remote</label>
+      <label><input type="checkbox" class="filter-type" value="Full-time" /> Full-time</label>
+      <label><input type="checkbox" class="filter-type" value="Internship" /> Internship</label>
+      <hr />
+      <h4>Max Salary (LPA)</h4>
+      <input type="range" id="salary" min="2" max="40" value="40" />
+      <p>Up to: <span id="salaryValue">40</span> LPA</p>
+    </aside>
+
+    <section>
+      <div class="section-head">
+        <h2>Featured Jobs</h2>
+        <span id="resultCount">0 jobs</span>
+      </div>
+      <div id="jobList" class="jobs"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 naukri.clone - Demo UI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
