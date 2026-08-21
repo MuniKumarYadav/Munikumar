@@ -18,6 +18,8 @@ const searchBtn = document.getElementById("searchBtn");
 const typeFilters = document.querySelectorAll(".filter-type");
 
 function render(list) {
+  if (!jobList || !resultCount) return;
+
   jobList.innerHTML = "";
   resultCount.textContent = list.length + " jobs";
 
@@ -40,6 +42,8 @@ function render(list) {
 }
 
 function applyFilters() {
+  if (!keyword || !locationInput || !experience || !salary) return;
+
   const q = keyword.value.toLowerCase();
   const loc = locationInput.value.toLowerCase();
   const exp = experience.value.toLowerCase();
@@ -58,11 +62,14 @@ function applyFilters() {
   render(filtered);
 }
 
-salary.addEventListener("input", function () {
-  salaryValue.textContent = salary.value;
-  applyFilters();
-});
+if (salary) {
+  salary.addEventListener("input", function () {
+    if (salaryValue) salaryValue.textContent = salary.value;
+    applyFilters();
+  });
+}
 
-searchBtn.addEventListener("click", applyFilters);
+if (searchBtn) searchBtn.addEventListener("click", applyFilters);
 typeFilters.forEach(function (c) { c.addEventListener("change", applyFilters); });
+
 render(jobs);
