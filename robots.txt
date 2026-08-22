@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://munikumar.vercel.app/sitemap.xml
