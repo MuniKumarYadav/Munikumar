@@ -6,7 +6,7 @@
   --border: #e6eaf4;
 }
 * { box-sizing: border-box; font-family: Arial, sans-serif; }
-body { margin: 0; background: var(--light); color: var(--dark); }
+body { margin: 0; background: var(--light); color: #fff; }
 .container { width: min(1160px, 92%); margin: auto; }
 
 .topbar {
@@ -24,7 +24,7 @@ body { margin: 0; background: var(--light); color: var(--dark); }
 }
 .logo { font-size: 1.45rem; font-weight: 700; }
 .logo span { color: var(--primary); }
-nav a { text-decoration: none; color: #333; margin: 0 10px; font-size: .95rem; }
+nav a { text-decoration: none; color: #fff; margin: 0 10px; font-size: .95rem; }
 
 .btn {
   border: none;
@@ -41,7 +41,7 @@ nav a { text-decoration: none; color: #333; margin: 0 10px; font-size: .95rem; }
   padding: 48px 0 34px;
 }
 .hero h1 { margin: 0 0 8px; font-size: 2rem; }
-.hero p { margin: 0 0 18px; color: var(--muted); }
+.hero p { margin: 0 0 18px; color: #fff; }
 
 .search-card {
   background: #fff;
@@ -73,7 +73,7 @@ nav a { text-decoration: none; color: #333; margin: 0 10px; font-size: .95rem; }
   padding: 16px;
   height: fit-content;
 }
-.filters label { display: block; margin: 10px 0; color: #4a5060; }
+.filters label { display: block; margin: 10px 0; color: #fff; }
 
 .section-head {
   display: flex;
@@ -89,7 +89,7 @@ nav a { text-decoration: none; color: #333; margin: 0 10px; font-size: .95rem; }
   padding: 16px;
 }
 .job-card h3 { margin: 0 0 6px; }
-.meta { color: var(--muted); font-size: .92rem; margin-bottom: 10px; }
+.meta { color: #fff; font-size: .92rem; margin-bottom: 10px; }
 .tags { margin-bottom: 10px; }
 .tags span {
   display: inline-block;
@@ -103,7 +103,7 @@ nav a { text-decoration: none; color: #333; margin: 0 10px; font-size: .95rem; }
 }
 footer {
   text-align: center;
-  color: var(--muted);
+  color: #fff;
   font-size: .9rem;
   padding: 18px 0 28px;
 }
