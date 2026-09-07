@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Marketing Audit Tool | MuniSoft</title>
+<meta name="description" content="Free digital marketing audit tool for website, SEO, content, social media and conversion planning.">
+<style>
+:root{--bg:#030b1f;--panel:#081a3a;--line:#1e3a5f;--text:#eef6ff;--muted:#9ab0cf;--accent:#38bdf8;--accent2:#2563eb;--good:#34d399;--warn:#fbbf24}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(135deg,#030b1f,#071a38);color:var(--text);line-height:1.6}.wrap{width:min(980px,calc(100% - 32px));margin:auto;padding:48px 0}a{color:var(--accent)}.hero{text-align:center;padding:30px 0 18px}.tag{display:inline-block;border:1px solid #23517d;padding:7px 12px;border-radius:999px;color:#bfe9ff;font-size:12px;font-weight:700}.hero h1{font-size:clamp(36px,7vw,64px);line-height:1.05;margin:18px 0}.hero p{color:var(--muted);max-width:700px;margin:auto}.card{background:rgba(8,26,58,.9);border:1px solid var(--line);border-radius:22px;padding:28px;margin-top:24px;box-shadow:0 20px 60px rgba(0,0,0,.2)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{margin-bottom:16px}label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}input,select{width:100%;padding:13px 14px;border-radius:10px;border:1px solid #274b73;background:#041226;color:var(--text);font-size:15px}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid #1c3a5c;border-radius:12px;background:#06152d}.check input{width:auto;margin-top:4px}.check span{font-size:14px}.btn{border:0;border-radius:11px;padding:14px 20px;background:linear-gradient(90deg,var(--accent2),var(--accent));color:#03101c;font-weight:900;font-size:16px;cursor:pointer;margin-top:22px;width:100%}.result{display:none}.score{font-size:72px;font-weight:900;color:var(--accent);line-height:1}.scorebox{display:flex;align-items:center;gap:22px;padding:20px;border-radius:18px;background:#04142c;border:1px solid var(--line)}.bars{margin-top:20px}.barrow{margin:15px 0}.barlabel{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}.track{height:11px;border-radius:20px;background:#061126;overflow:hidden}.fill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--accent2),var(--accent))}.recommendations{margin-top:22px}.recommendation{padding:14px 16px;border-left:3px solid var(--accent);background:#06152d;margin:10px 0;border-radius:0 10px 10px 0}.footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 0}@media(max-width:700px){.grid,.checklist{grid-template-columns:1fr}.wrap{padding-top:24px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<div class="tag">FREE DIGITAL MARKETING TOOL</div>
+<h1>Digital Marketing<br><span style="color:#38bdf8">Audit Scorecard</span></h1>
+<p>Check your current digital marketing foundation and get a practical action plan across SEO, content, social media, conversion and analytics.</p>
+</section>
+
+<section class="card" id="tool">
+<div class="grid">
+<div class="field"><label>Website / Business URL</label><input id="url" type="url" placeholder="https://example.com"></div>
+<div class="field"><label>Primary marketing goal</label><select id="goal"><option value="leads">Generate more leads</option><option value="traffic">Increase website traffic</option><option value="sales">Increase online sales</option><option value="brand">Build brand awareness</option></select></div>
+</div>
+<h2>Mark what is already in place</h2>
+<div class="checklist">
+<label class="check"><input type="checkbox" data-cat="seo" checked><span><b>SEO basics</b><br>Titles, meta descriptions and keyword targeting</span></label>
+<label class="check"><input type="checkbox" data-cat="seo"><span><b>Google Search Console</b><br>Search performance and indexing monitored</span></label>
+<label class="check"><input type="checkbox" data-cat="content"><span><b>Content plan</b><br>Regular helpful pages, blogs or landing pages</span></label>
+<label class="check"><input type="checkbox" data-cat="content"><span><b>Clear expertise</b><br>Content answers customer questions directly</span></label>
+<label class="check"><input type="checkbox" data-cat="social"><span><b>Active social channels</b><br>Consistent publishing where customers are active</span></label>
+<label class="check"><input type="checkbox" data-cat="social"><span><b>Campaign tracking</b><br>UTMs or source tracking for campaigns</span></label>
+<label class="check"><input type="checkbox" data-cat="conversion"><span><b>Strong CTA</b><br>Visitors know the next action to take</span></label>
+<label class="check"><input type="checkbox" data-cat="conversion"><span><b>Fast mobile experience</b><br>Website works well on phones</span></label>
+<label class="check"><input type="checkbox" data-cat="analytics"><span><b>Analytics configured</b><br>Traffic and important events are measured</span></label>
+<label class="check"><input type="checkbox" data-cat="analytics"><span><b>Monthly reporting</b><br>Results are reviewed and actions are documented</span></label>
+</div>
+<button class="btn" onclick="audit()">Generate My Marketing Score →</button>
+</section>
+
+<section class="card result" id="result">
+<h2>Your Digital Marketing Audit</h2>
+<div class="scorebox"><div class="score" id="score">0</div><div><b id="status">Starting point</b><br><span id="summary" style="color:var(--muted)">Complete the checklist to generate your score.</span></div></div>
+<div class="bars" id="bars"></div>
+<div class="recommendations"><h3>Priority action plan</h3><div id="recs"></div></div>
+</section>
+<div class="footer">Built by MuniSoft.Tech • Digital Marketing • SEO • AI</div>
+</div>
+<script>
+const cats={seo:'SEO & Search',content:'Content',social:'Social & Campaigns',conversion:'Conversion',analytics:'Analytics'};
+function audit(){
+ const boxes=[...document.querySelectorAll('input[type=checkbox]')];
+ const data={seo:[0,0],content:[0,0],social:[0,0],conversion:[0,0],analytics:[0,0]};
+ boxes.forEach(b=>{data[b.dataset.cat][1]++;if(b.checked)data[b.dataset.cat][0]++;});
+ const total=boxes.filter(b=>b.checked).length, score=Math.round(total/boxes.length*100);
+ document.getElementById('score').textContent=score;
+ const status=score>=80?'Strong foundation':score>=55?'Good potential':'Needs attention';
+ document.getElementById('status').textContent=status;
+ document.getElementById('summary').textContent=score>=80?'Your fundamentals are in place. Focus on testing and scaling what converts.':score>=55?'You have useful foundations, but several gaps are limiting consistent growth.':'Build the core measurement, visibility and conversion foundations before scaling spend.';
+ const bars=document.getElementById('bars');bars.innerHTML='';
+ const recs=document.getElementById('recs');recs.innerHTML='';
+ const tips={seo:'Strengthen technical SEO and search visibility. Add Search Console monitoring and improve page-level targeting.',content:'Create a content system around real customer questions, services and high-intent search topics.',social:'Choose the channels where your audience is active and track campaign traffic with consistent UTM parameters.',conversion:'Improve mobile UX, page clarity and calls-to-action so every important page has a measurable next step.',analytics:'Configure analytics and conversion events, then review a simple monthly dashboard of traffic, leads and outcomes.'};
+ Object.entries(data).forEach(([key,v])=>{const pct=Math.round(v[0]/v[1]*100);bars.innerHTML+=`<div class="barrow"><div class="barlabel"><span>${cats[key]}</span><b>${pct}%</b></div><div class="track"><div class="fill" style="width:${pct}%"></div></div></div>`;if(pct<100)recs.innerHTML+=`<div class="recommendation"><b>${cats[key]}</b><br>${tips[key]}</div>`;});
+ if(!recs.innerHTML)recs.innerHTML='<div class="recommendation"><b>Next step:</b><br>Use this strong foundation to test new landing pages, content clusters and automation workflows.</div>';
+ document.getElementById('result').style.display='block';document.getElementById('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body></html>
