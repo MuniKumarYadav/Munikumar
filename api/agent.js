@@ -8,9 +8,9 @@ export default async function handler(req, res) {
 
     const token = process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN;
     if (!token) {
-      return res.status(503).json({
-        error: 'AI Gateway is not authenticated for this deployment.',
-        setup: 'Add AI_GATEWAY_API_KEY to the Vercel project or enable Vercel OIDC for the deployment.'
+      return res.status(200).json({
+        text: 'Local agent mode: I can help structure the marketing decision, but the live AI model is not connected on this deployment yet.\n\nStart with: 1) define the business objective, 2) identify the primary metric and guardrails, 3) inspect the funnel and data quality, 4) form a falsifiable hypothesis, 5) design an experiment, and 6) require human approval before execution.',
+        model: 'local-fallback'
       });
     }
 
