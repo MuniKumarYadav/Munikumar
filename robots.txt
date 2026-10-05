@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://munikumar.onrender.com/sitemap.xml
