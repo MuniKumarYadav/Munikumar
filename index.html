@@ -34,14 +34,28 @@ footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#718198;font-s
 .reveal{animation:rise .8s ease both}@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:55px}.hero-visual{max-width:700px}.services{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.metric:nth-child(2){border-right:0}.metric{border-bottom:1px solid var(--line)}.work,.insight{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.section-head{display:block}.section-head>p{margin-top:15px}.navlinks{display:none}}
 @media(max-width:600px){.wrap{width:min(100% - 28px,1180px)}nav{height:70px}.hero{min-height:auto;padding:45px 0 55px}h1{font-size:52px}.hero-copy{font-size:17px}.float-card{display:none}.services,.metrics,.process{grid-template-columns:1fr}.metric{border-right:0}.metric:last-child{border-bottom:0}.section{padding:75px 0}.cta{padding:35px 24px;margin-bottom:55px}.footer-links{display:none}.trust{gap:12px}}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}.faq-grid article{border:1px solid var(--line);background:linear-gradient(180deg,#0d1526,#080d18);border-radius:20px;padding:25px}.faq-grid h3{font-size:20px;margin:0 0 9px}.faq-grid p{color:#94a3b8;margin:0}.list strong{color:#e8eef8}@media(max-width:900px){.list[style*="grid-template-columns:repeat(3,1fr)"],.faq-grid{grid-template-columns:1fr}}</style>
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}.faq-grid article{border:1px solid var(--line);background:linear-gradient(180deg,#0d1526,#080d18);border-radius:20px;padding:25px}.faq-grid h3{font-size:20px;margin:0 0 9px}.faq-grid p{color:#94a3b8;margin:0}.list strong{color:#e8eef8}@media(max-width:900px){.list[style*="grid-template-columns:repeat(3,1fr)"],.faq-grid{grid-template-columns:1fr}}
+<style>
+/* Dynamic growth studio UI */
+.progress{position:fixed;left:0;top:0;height:3px;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));z-index:9999;box-shadow:0 0 18px #38d9ff66}
+.mobile-toggle{display:none;border:1px solid #304361;background:#0c1527;color:#fff;border-radius:10px;padding:9px 11px;font-size:18px}
+.navlinks.open{display:flex;position:absolute;left:14px;right:14px;top:70px;flex-direction:column;gap:0;background:#080f1e;border:1px solid var(--line);border-radius:16px;padding:8px;box-shadow:0 25px 60px #000b}
+.navlinks.open a{padding:13px 12px;border-radius:10px}.navlinks.open a:hover{background:#121d31}
+.reveal-on-scroll{opacity:0;transform:translateY(20px);transition:.7s ease}.reveal-on-scroll.visible{opacity:1;transform:none}
+.simulator{margin-top:38px;border:1px solid var(--line);border-radius:24px;padding:28px;background:linear-gradient(135deg,#0d1628,#090d19);display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.sim-controls{display:grid;gap:18px}.sim-field label{display:flex;justify-content:space-between;color:#a9b6c9;font-size:13px;margin-bottom:8px}.sim-field output{color:#fff;font-weight:800}
+.sim-field input{width:100%;accent-color:#6f8cff}.sim-results{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sim-result{padding:18px;border:1px solid var(--line);border-radius:16px;background:#0a1120}.sim-result small{display:block;color:#7f91aa;text-transform:uppercase;letter-spacing:.08em;font-size:10px}.sim-result strong{display:block;font-size:29px;letter-spacing:-.04em;margin-top:6px}
+.channel-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-top:25px}.channel-tab{border:1px solid #2b3c59;background:#0b1425;color:#9eacc1;padding:9px 13px;border-radius:999px;cursor:pointer;font-weight:700}.channel-tab.active{background:#17294a;color:#dce9ff;border-color:#5474ad}.channel-panel{margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:18px;background:#0a1120;display:none}.channel-panel.active{display:block}.channel-panel strong{color:#fff}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.form-grid input,.form-grid textarea{width:100%;border:1px solid #2a3a58;background:#080f1d;color:#fff;border-radius:12px;padding:13px;font:inherit;outline:none}.form-grid textarea{grid-column:1/-1;min-height:110px;resize:vertical}.form-grid input:focus,.form-grid textarea:focus{border-color:#638cff;box-shadow:0 0 0 3px #638cff18}.form-status{font-size:13px;color:#8fa0b8;margin-top:10px;min-height:20px}
+@media(max-width:900px){.mobile-toggle{display:block}.nav-cta{display:none}.navlinks{display:none}.simulator{grid-template-columns:1fr}}
+@media(max-width:600px){.sim-results,.form-grid{grid-template-columns:1fr}.form-grid textarea{grid-column:auto}}
+</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://munikumar.onrender.com/#organization","name":"Munikumar Growth Marketing Studio","url":"https://munikumar.onrender.com/","description":"Digital marketing growth studio focused on SEO, paid acquisition, social, content, conversion and analytics.","sameAs":["https://github.com/MuniKumarYadav/Munikumar"]},{"@type":"WebSite","@id":"https://munikumar.onrender.com/#website","url":"https://munikumar.onrender.com/","name":"Munikumar","publisher":{"@id":"https://munikumar.onrender.com/#organization"}},{"@type":"WebPage","@id":"https://munikumar.onrender.com/#webpage","url":"https://munikumar.onrender.com/","name":"Munikumar | Digital Marketing, SEO & Growth Strategy","description":"Digital marketing strategy, SEO, paid acquisition, social, content and analytics built around measurable business growth.","isPartOf":{"@id":"https://munikumar.onrender.com/#website"},"publisher":{"@id":"https://munikumar.onrender.com/#organization"},"dateModified":"2026-10-05","about":{"@id":"https://munikumar.onrender.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://munikumar.onrender.com/"},{"@type":"ListItem","position":2,"name":"Digital Marketing & Growth"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Munikumar do?","acceptedAnswer":{"@type":"Answer","text":"Munikumar is a digital marketing growth studio providing SEO, paid acquisition, social and content, conversion strategy, analytics and growth strategy."}},{"@type":"Question","name":"What is the difference between SEO, AEO and GEO?","acceptedAnswer":{"@type":"Answer","text":"SEO helps search engines discover and understand useful pages. AEO emphasizes direct answers to important questions. GEO is a broader working approach for making an organization's entity, expertise, evidence and content easier for generative systems to understand."}},{"@type":"Question","name":"Who is this digital marketing service for?","acceptedAnswer":{"@type":"Answer","text":"The service is designed for businesses and teams that need stronger search visibility, qualified demand, better conversion or clearer marketing measurement."}},{"@type":"Question","name":"How should a business choose a marketing channel?","acceptedAnswer":{"@type":"Answer","text":"Choose based on the commercial constraint: SEO for durable organic demand, paid acquisition for controlled testing and immediate reach, social and content for attention and trust, and conversion strategy when traffic is not turning into enough enquiries or sales."}},{"@type":"Question","name":"How is marketing performance measured?","acceptedAnswer":{"@type":"Answer","text":"Performance is measured using business-relevant signals such as qualified traffic, conversion rate, acquisition cost, revenue or pipeline, retention and channel efficiency."}}]}]}</script>
 </head>
 <body>
 <div class="wrap">
 <nav>
 <a class="logo" href="#">Muni<i>kumar</i></a>
-<div class="navlinks"><a href="#services">Capabilities</a><a href="/about/">About</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a><a href="#contact">Contact</a></div>
+<button class="mobile-toggle" aria-label="Open navigation">☰</button><div class="navlinks"><a href="#services">Capabilities</a><a href="/about/">About</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a><a href="#contact">Contact</a></div>
 <a class="nav-cta" href="#contact">Let's talk ↗</a>
 </nav>
 
@@ -92,6 +106,27 @@ footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#718198;font-s
 </div>
 </section>
 
+
+<section class="section reveal-on-scroll" id="simulator">
+<div class="section-head"><div><div class="kicker">Live growth simulator</div><h2>Turn traffic into a business forecast.</h2></div><p>Adjust a few assumptions and see how acquisition economics can change. This is an illustrative planning model, not a guarantee.</p></div>
+<div class="simulator">
+<div class="sim-controls">
+<div class="sim-field"><label>Monthly marketing budget <output id="budgetOut">$5,000</output></label><input id="budget" type="range" min="1000" max="50000" step="500" value="5000"></div>
+<div class="sim-field"><label>Landing-page conversion <output id="cvrOut">3.0%</output></label><input id="cvr" type="range" min="0.5" max="12" step="0.5" value="3"></div>
+<div class="sim-field"><label>Average order / lead value <output id="aovOut">$250</output></label><input id="aov" type="range" min="50" max="2000" step="25" value="250"></div>
+<div class="channel-tabs"><button class="channel-tab active" data-channel="blended">Blended</button><button class="channel-tab" data-channel="search">Search</button><button class="channel-tab" data-channel="social">Social</button></div>
+<div id="channelBlended" class="channel-panel active"><strong>Blended acquisition:</strong> balance intent capture with creative reach and continuous testing.</div>
+<div id="channelSearch" class="channel-panel"><strong>Search-led:</strong> prioritize high-intent demand, landing-page relevance and conversion efficiency.</div>
+<div id="channelSocial" class="channel-panel"><strong>Social-led:</strong> prioritize creative velocity, audience discovery and retargeting.</div>
+</div>
+<div class="sim-results">
+<div class="sim-result"><small>Estimated clicks</small><strong id="clicksOut">333</strong></div>
+<div class="sim-result"><small>Estimated conversions</small><strong id="convOut">10</strong></div>
+<div class="sim-result"><small>Illustrative revenue</small><strong id="revOut">$2,500</strong></div>
+<div class="sim-result"><small>Illustrative ROAS</small><strong id="roasOut">0.50×</strong></div>
+</div>
+</div>
+</section>
 <section class="section" id="process">
 <div class="section-head"><div><div class="kicker">03 / Operating system</div><h2>Strategy first. Experiments always.</h2></div><p>A simple operating rhythm built to reduce wasted spend and compound what works.</p></div>
 <div class="process">
@@ -114,11 +149,79 @@ footer{border-top:1px solid var(--line);padding:30px 0 45px;color:#718198;font-s
 <div class="kicker">05 / Start here</div>
 <h2>Your next growth curve starts with a sharper system.</h2>
 <p>Tell me where you are today, what you are trying to grow, and what is getting in the way. We’ll turn it into a focused marketing roadmap.</p>
-<div class="buttons"><a class="btn" href="mailto:hello@munikumar.com">Start a conversation ↗</a><a class="btn alt" href="#services">Explore capabilities</a></div>
+
+<div style="margin-top:35px">
+<div class="kicker">Quick brief</div>
+<div class="form-grid">
+<input id="leadName" placeholder="Your name" aria-label="Your name">
+<input id="leadEmail" type="email" placeholder="Work email" aria-label="Work email">
+<textarea id="leadGoal" placeholder="What are you trying to grow?"></textarea>
+</div>
+<div class="buttons"><button class="btn" id="leadSubmit" type="button">Generate my next step →</button></div>
+<div class="form-status" id="formStatus"></div>
+</div><div class="buttons"><a class="btn" href="mailto:hello@munikumar.com">Start a conversation ↗</a><a class="btn alt" href="#services">Explore capabilities</a></div>
 </section>
 </main>
 
 <footer><span>© 2026 Munikumar — Growth Marketing Studio</span><div class="footer-links"><a href="/services/">Services</a><a href="/about/">About</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide" target="_blank" rel="noopener">SEO source</a><a href="https://developers.google.com/search/docs/appearance/structured-data/organization" target="_blank" rel="noopener">Schema source</a></div></footer>
 </div>
+
+<script>
+(function(){
+  const $ = (s) => document.querySelector(s);
+  const $ = (s) => [...document.querySelectorAll(s)];
+
+  const progress = document.createElement('div');
+  progress.className='progress';
+  document.body.appendChild(progress);
+  const updateProgress=()=>{const h=document.documentElement.scrollHeight-innerHeight; progress.style.width=(h>0?(scrollY/h)*100:0)+'%';};
+  addEventListener('scroll',updateProgress,{passive:true}); updateProgress();
+
+  const toggle=$('.mobile-toggle'), nav=$('.navlinks');
+  if(toggle){toggle.addEventListener('click',()=>nav.classList.toggle('open')); $('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));}
+
+  const io=new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
+  $('.service,.metric,.step,.case,.mini,.faq-grid article,.insight,.simulator').forEach(el=>{el.classList.add('reveal-on-scroll');io.observe(el);});
+
+  const counters=[...document.querySelectorAll('.metric strong')];
+  const animateCounter=(el)=>{
+    const raw=el.textContent.trim(); const match=raw.match(/^([0-9.]+)(.*)$/); if(!match)return;
+    const target=parseFloat(match[1]), suffix=match[2], start=performance.now(), dur=1100;
+    const tick=(t)=>{const p=Math.min(1,(t-start)/dur), v=target*(1-Math.pow(1-p,3)); el.textContent=(target<10?v.toFixed(1):Math.round(v))+suffix;if(p<1)requestAnimationFrame(tick);};
+    requestAnimationFrame(tick);
+  };
+  const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){animateCounter(e.target);cio.unobserve(e.target)}}),{threshold:.7});
+  counters.forEach(c=>cio.observe(c));
+
+  const budget=$('#budget'),cvr=$('#cvr'),aov=$('#aov');
+  function money(n){return '
+</html>+Math.round(n).toLocaleString('en-US')}
+  function calc(){
+    if(!budget)return;
+    const b=+budget.value, rate=+cvr.value/100, value=+aov.value;
+    const cpc=1.8, clicks=Math.round(b/cpc), conv=Math.max(0,Math.round(clicks*rate)), rev=conv*value, roas=b?rev/b:0;
+    $('#budgetOut').textContent=money(b);$('#cvrOut').textContent=(+cvr.value).toFixed(1)+'%';$('#aovOut').textContent=money(value);
+    $('#clicksOut').textContent=clicks.toLocaleString();$('#convOut').textContent=conv.toLocaleString();$('#revOut').textContent=money(rev);$('#roasOut').textContent=roas.toFixed(2)+'×';
+  }
+  [budget,cvr,aov].forEach(x=>x&&x.addEventListener('input',calc)); calc();
+
+  $('.channel-tab').forEach(tab=>tab.addEventListener('click',()=>{
+    $('.channel-tab').forEach(x=>x.classList.remove('active'));tab.classList.add('active');
+    $('.channel-panel').forEach(x=>x.classList.remove('active'));
+    const p=$('#channel'+tab.dataset.channel.charAt(0).toUpperCase()+tab.dataset.channel.slice(1)); if(p)p.classList.add('active');
+  }));
+
+  const submit=$('#leadSubmit'),status=$('#formStatus');
+  if(submit)submit.addEventListener('click',()=>{
+    const name=$('#leadName').value.trim(), email=$('#leadEmail').value.trim(), goal=$('#leadGoal').value.trim();
+    if(!name||!email||!goal){status.textContent='Please add your name, email and growth goal.';return;}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){status.textContent='Please enter a valid email address.';return;}
+    const subject=encodeURIComponent('Digital marketing growth brief — '+name);
+    const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nGrowth goal: '+goal);
+    status.textContent='Opening your email client with the brief…';
+    location.href='mailto:hello@munikumar.com?subject='+subject+'&body='+body;
+  });
+})();
+</script>
 </body>
 </html>
