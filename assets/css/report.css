@@ -39,7 +39,7 @@
 .rep-head h2{margin:6px 0 4px;font-size:clamp(28px,4vw,42px)}.rep-head p{margin:0;color:var(--muted)}
 .rep-actions{display:flex;gap:10px;flex-wrap:wrap}
 .rep-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
-.rep-score{padding:20px;border:1px solid var(--line);border-radius:16px;background:#0a1120}
+.rep-score{min-width:0;padding:20px;border:1px solid var(--line);border-radius:16px;background:#0a1120}
 .rep-score small{display:block;color:#8293ac;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
 .rep-score strong{font-size:42px;letter-spacing:-.04em}.rep-score em{font-style:normal;font-size:16px;margin-left:8px;font-weight:800}
 .rep-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
@@ -53,7 +53,7 @@
 .rep-cta p{margin:0;color:#c4cfdf}
 
 @media(max-width:960px){.gauges{grid-template-columns:1fr 1fr}.vitals{grid-template-columns:repeat(3,1fr)}.rp-two,.checklist{grid-template-columns:1fr}}
-@media(max-width:620px){.rp-url{grid-template-columns:1fr}.rp-block,.report{padding:22px}.vitals,.rep-scores{grid-template-columns:1fr 1fr}.rep-scores .rep-score:first-child{grid-column:1/-1}}
+@media(max-width:620px){.rp-url{grid-template-columns:1fr}.rp-block,.report{padding:22px}.vitals,.rep-scores{grid-template-columns:1fr 1fr}.rep-scores .rep-score:first-child{grid-column:1/-1}.rep-score{padding:16px}.rep-score strong{font-size:34px}.rep-score em{display:block;margin:2px 0 0}}
 
 @media print{
   @page{margin:14mm}
