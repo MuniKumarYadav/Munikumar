@@ -18,7 +18,7 @@ document.documentElement.classList.add('js');
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  toTop && toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+  toTop && toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
   // Mobile nav
   const toggle = $('.mobile-toggle'), nav = $('.navlinks');
@@ -157,9 +157,11 @@ document.documentElement.classList.add('js');
   caseTabs && setupTabs(caseTabs);
 
   // Pricing toggle
+  let billing = 'Monthly';
   $$('.billing button').forEach((btn) => btn.addEventListener('click', () => {
     $$('.billing button').forEach((b) => b.setAttribute('aria-pressed', b === btn));
     const yearly = btn.dataset.billing === 'yearly';
+    billing = yearly ? 'Yearly' : 'Monthly';
     $$('[data-monthly]').forEach((p) => {
       const v = yearly ? Math.round(+p.dataset.monthly * 0.85) : +p.dataset.monthly;
       p.firstChild.textContent = money(v);
@@ -185,7 +187,7 @@ document.documentElement.classList.add('js');
     const subject = encodeURIComponent('Growth brief — ' + v('leadName') + (v('leadCompany') ? ' (' + v('leadCompany') + ')' : ''));
     const body = encodeURIComponent(
       'Name: ' + v('leadName') + '\nEmail: ' + v('leadEmail') + '\nCompany / website: ' + v('leadCompany') +
-      '\nService: ' + v('leadService') + '\nMonthly budget: ' + v('leadBudget') + '\n\nGoal:\n' + v('leadGoal'));
+      '\nService: ' + v('leadService') + (/plan$/.test(v('leadService')) ? ' (' + billing + ' billing)' : '') + '\nMonthly budget: ' + v('leadBudget') + '\n\nGoal:\n' + v('leadGoal'));
     status.textContent = 'Thanks! Opening your email app with your brief…';
     location.href = 'mailto:hello@munikumar.com?subject=' + subject + '&body=' + body;
   });
