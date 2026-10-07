@@ -3,7 +3,7 @@ document.documentElement.classList.add('js');
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
+  const money = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
 
   // Scroll progress, sticky header, back-to-top
   const progress = document.createElement('div');
@@ -119,10 +119,10 @@ document.documentElement.classList.add('js');
 
   // Growth simulator
   const channels = {
-    blended: { cpc: 1.8, cvrMult: 1, growth: 0.06, note: 'Blended acquisition balances high-intent search with creative social reach and continuous testing.' },
-    search: { cpc: 2.6, cvrMult: 1.45, growth: 0.04, note: 'Search-led plans capture existing demand: higher click cost, stronger intent and conversion.' },
-    social: { cpc: 0.9, cvrMult: 0.45, growth: 0.09, note: 'Social-led plans buy cheaper attention and compound through creative velocity and retargeting.' },
-    seo: { cpc: 1.6, cvrMult: 1.1, growth: 0.15, note: 'SEO-led plans invest in content and authority: slower start, compounding organic returns.' }
+    blended: { cpc: 15, cvrMult: 1, growth: 0.06, note: 'Blended acquisition balances high-intent search with creative social reach and continuous testing.' },
+    search: { cpc: 22, cvrMult: 1.45, growth: 0.04, note: 'Search-led plans capture existing demand: higher click cost, stronger intent and conversion.' },
+    social: { cpc: 8, cvrMult: 0.45, growth: 0.09, note: 'Social-led plans buy cheaper attention and compound through creative velocity and retargeting.' },
+    seo: { cpc: 13, cvrMult: 1.1, growth: 0.15, note: 'SEO-led plans invest in content and authority: slower start, compounding organic returns.' }
   };
   let channel = 'blended';
   const budget = $('#budget'), cvr = $('#cvr'), aov = $('#aov');
@@ -134,8 +134,8 @@ document.documentElement.classList.add('js');
     $('#budgetOut').textContent = money(b);
     $('#cvrOut').textContent = (+cvr.value).toFixed(1) + '%';
     $('#aovOut').textContent = money(value);
-    $('#clicksOut').textContent = clicks.toLocaleString();
-    $('#convOut').textContent = conv.toLocaleString();
+    $('#clicksOut').textContent = clicks.toLocaleString('en-IN');
+    $('#convOut').textContent = conv.toLocaleString('en-IN');
     $('#revOut').textContent = money(rev);
     $('#roasOut').textContent = roas.toFixed(2) + '×';
     $('#channelNote').textContent = c.note;
