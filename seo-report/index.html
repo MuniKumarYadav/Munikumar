@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free SEO &amp; SMO Report Generator | Munikumar</title>
+<meta name="description" content="Free SEO and social media optimization (SMO) report generator. Check your website's SEO, speed and Core Web Vitals, score your social media engagement and download a PDF report.">
+<link rel="canonical" href="https://munikumar.onrender.com/seo-report/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:title" content="Free SEO &amp; SMO Report Generator | Munikumar">
+<meta property="og:description" content="Audit your website SEO and social media in minutes and download a branded PDF report.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://munikumar.onrender.com/seo-report/">
+<meta property="og:image" content="https://munikumar.onrender.com/assets/marketing-seo.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free SEO &amp; SMO Report Generator | Munikumar">
+<meta name="twitter:description" content="Audit your website SEO and social media in minutes and download a branded PDF report.">
+<meta name="twitter:image" content="https://munikumar.onrender.com/assets/marketing-seo.svg">
+<meta name="theme-color" content="#050816">
+<link rel="icon" href="/assets/digital-marketing-hero.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css?v=3">
+<link rel="stylesheet" href="/assets/css/report.css?v=3">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"SEO & SMO Report Generator","url":"https://munikumar.onrender.com/seo-report/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@id":"https://munikumar.onrender.com/#organization"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<nav aria-label="Primary">
+<a class="logo" href="/">Muni<i>kumar</i></a>
+<div class="navlinks" id="navlinks">
+<a href="/#services">Services</a><a href="/#simulator">ROI Planner</a><a href="/#pricing">Pricing</a><a class="active" href="/seo-report/">SEO &amp; SMO Report</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a>
+</div>
+<a class="nav-cta" href="/#contact">Get a free audit ↗</a>
+<button class="mobile-toggle" aria-label="Toggle navigation" aria-controls="navlinks" aria-expanded="false">☰</button>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<div class="wrap">
+<section class="rp-hero no-print">
+<div class="eyebrow"><b></b> Free tool · No sign-up</div>
+<h1>SEO &amp; SMO <span class="grad">report generator</span></h1>
+<p class="hero-copy">Check your website's SEO health, speed and Core Web Vitals, score your social media performance, and download a ready-to-share PDF report.</p>
+<ol class="rp-steps"><li><b>1</b> Website SEO</li><li><b>2</b> Social media (SMO)</li><li><b>3</b> Download report</li></ol>
+</section>
+
+<section class="rp-block card no-print" id="seo" aria-labelledby="seoTitle">
+<div class="rp-block-head"><span class="kicker">Step 1</span><h2 id="seoTitle">Website SEO audit</h2><p>We run Google PageSpeed Insights (Lighthouse) on your page and pull out the SEO, speed and accessibility results.</p></div>
+<form id="seoForm" class="rp-url" novalidate>
+<label for="siteUrl" class="sr">Website URL</label>
+<input id="siteUrl" type="url" inputmode="url" placeholder="https://yourbusiness.in" required>
+<select id="strategy" aria-label="Device"><option value="mobile">Mobile</option><option value="desktop">Desktop</option></select>
+<button class="btn" type="submit" id="seoBtn">Analyse website →</button>
+</form>
+<div class="form-status" id="seoStatus" role="status"></div>
+<div id="seoResults" hidden>
+<div class="gauges" id="gauges"></div>
+<h3 class="rp-sub">Core Web Vitals &amp; speed</h3>
+<div class="vitals" id="vitals"></div>
+<div class="rp-two">
+<div><h3 class="rp-sub">SEO issues found</h3><ul class="issues" id="seoIssues"></ul></div>
+<div><h3 class="rp-sub">Top speed opportunities</h3><ul class="issues" id="speedIssues"></ul></div>
+</div>
+</div>
+<h3 class="rp-sub">On-page &amp; local SEO checklist <small>tick what's already done</small></h3>
+<div class="checklist" id="seoChecklist"></div>
+</section>
+
+<section class="rp-block card no-print" id="smo" aria-labelledby="smoTitle">
+<div class="rp-block-head"><span class="kicker">Step 2</span><h2 id="smoTitle">Social media (SMO) audit</h2><p>Enter numbers from your profiles' insights. Leave a platform blank if you don't use it. Engagement rate = (likes + comments + shares) per post ÷ followers.</p></div>
+<div class="rp-field"><label for="bizName">Business / brand name</label><input id="bizName" type="text" placeholder="e.g. Sri Lakshmi Textiles"></div>
+<div class="smo-table-wrap">
+<table class="smo-table">
+<thead><tr><th>Platform</th><th>Followers</th><th>Posts / week</th><th>Avg likes / post</th><th>Avg comments / post</th><th>Avg shares / post</th></tr></thead>
+<tbody id="smoRows"></tbody>
+</table>
+</div>
+<h3 class="rp-sub">Profile optimisation checklist <small>tick what's already done</small></h3>
+<div class="checklist" id="smoChecklist"></div>
+</section>
+
+<section class="rp-block card no-print">
+<div class="rp-block-head"><span class="kicker">Step 3</span><h2>Generate your report</h2><p>Combine everything into one report you can save as a PDF or share with your team.</p></div>
+<div class="buttons"><button class="btn" id="genBtn" type="button">Generate report →</button></div>
+<div class="form-status" id="genStatus" role="status"></div>
+</section>
+
+<section id="report" class="report" hidden aria-live="polite"></section>
+</div>
+</main>
+
+<footer class="no-print">
+<div class="wrap">
+<div class="footer-bottom"><span>© <span id="year">2026</span> Munikumar — Growth Marketing Studio</span><span><a href="/">Home</a> · <a href="/services/">Services</a> · <a href="/#contact">Contact</a></span></div>
+</div>
+</footer>
+<script src="/assets/js/report.js?v=2" defer></script>
+</body>
+</html>
