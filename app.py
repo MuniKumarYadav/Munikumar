@@ -15,6 +15,14 @@ CENTROIDS = tf.constant([
     [0.20, 0.25, 0.10, 0.95, 0.35],
 ], dtype=tf.float32)
 
+PAGES = {
+    "about": {"title":"About Munikumar AI","headline":"Marketing strategy for the search era after search.","copy":"Munikumar combines digital marketing fundamentals with SEO, AEO, GEO and lightweight AI workflows so teams can move from channel reporting to useful decisions."},
+    "services": {"title":"AI Marketing Services","headline":"A practical growth stack built around discovery and conversion.","copy":"SEO, AEO, GEO, paid acquisition, content intelligence, technical audits, CRO and analytics—connected into one operating system."},
+    "faq": {"title":"SEO, AEO & GEO FAQ","headline":"Answers for modern search and AI discovery.","copy":"SEO improves traditional search visibility. AEO focuses on useful direct answers. GEO focuses on making entities, expertise, evidence and content easier for generative systems to understand."},
+    "insights": {"title":"Marketing Insights","headline":"Search intelligence, AI discovery and growth experiments.","copy":"Use the toolkit to turn questions, content, technical signals and intent into repeatable marketing decisions."},
+    "seo-report": {"title":"Instant SEO Report","headline":"Run a fast technical search check.","copy":"Enter a public URL to inspect its title, meta description, H1 structure and canonical setup with the Python audit API."},
+}
+
 def features(text):
     t = text.lower()
     words = max(len(re.findall(r"\w+", t)), 1)
@@ -47,6 +55,12 @@ def healthz():
 def home():
     return render_template("index.html")
 
+@app.get("/<page>/")
+def page(page):
+    if page in PAGES:
+        return render_template("page.html", page=PAGES[page], slug=page)
+    return render_template("index.html"), 404
+
 @app.post("/api/intent")
 def intent():
     data = request.get_json(silent=True) or {}
@@ -70,11 +84,11 @@ def content_score():
     words = re.findall(r"\b[a-zA-Z0-9][a-zA-Z0-9'-]*\b", plain)
     questions = len(re.findall(r"\b(what|why|how|when|where|which|who)\b", plain.lower()))
     entities = len(set(re.findall(r"\b[A-Z][a-zA-Z0-9&.-]{2,}\b", plain)))
-    score = max(0, min(100, 100 - len(words)/55 - max(0,len(words)-1600)/30))
+    readability = max(0, min(100, 100 - len(words)/55 - max(0,len(words)-1600)/30))
     q = min(100, questions*12); e = min(100, entities*6); s = min(100, len(re.findall(r"\b(h[1-6]|title|meta description)\b", content.lower()))*10)
-    overall = round(score*.2 + q*.25 + e*.25 + s*.3, 1)
+    overall = round(readability*.2 + q*.25 + e*.25 + s*.3, 1)
     return jsonify({"word_count":len(words),"question_coverage":q,"entity_signal":e,"structure_signal":s,
-                    "readability":round(score,1),"overall_score":overall})
+                    "readability":round(readability,1),"overall_score":overall})
 
 @app.post("/api/url-audit")
 def url_audit():
@@ -92,6 +106,7 @@ def url_audit():
         canonical = bool(soup.find("link", rel="canonical"))
         score = 100; rec = []
         if not title: score -= 15; rec.append("Add a unique title tag.")
+        elif len(title) < 25 or len(title) > 60: score -= 5; rec.append("Tighten the title around a clear search intent.")
         if not description: score -= 15; rec.append("Add a compelling meta description.")
         if len(h1s) != 1: score -= 10; rec.append("Use one primary H1 aligned to page intent.")
         if not canonical: score -= 5; rec.append("Add a canonical URL.")
