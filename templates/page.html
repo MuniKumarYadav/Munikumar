@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ page.title }} | Munikumar AI</title><meta name="description" content="{{ page.copy }}">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="header"><div class="container nav"><a class="logo" href="/">Muni<i>kumar</i><span>AI</span></a><nav><a href="/#tools">AI Tools</a><a href="/#strategy">Strategy</a><a href="/#plans">Plans</a><a class="nav-cta" href="/#tools">Start analysis ↗</a></nav></div></header>
+<main><section class="section hero-sub"><div class="container"><div class="kicker">{{ slug|upper }}</div><h1>{{ page.headline }}</h1><p class="hero-copy">{{ page.copy }}</p>
+{% if slug == 'seo-report' %}<div class="tool standalone"><h3>Instant URL SEO Audit</h3><p>Enter a public URL to run the same Python audit used by the main platform.</p><div class="row"><input id="urlInput" placeholder="https://example.com"><button onclick="urlAudit()">Audit</button></div><div id="urlResult" class="result"></div></div>
+{% else %}<div class="system-grid"><div><strong>SEO</strong><h3>Search visibility</h3><p>Technical foundations, topical relevance and durable organic demand.</p></div><div><strong>AEO</strong><h3>Useful answers</h3><p>Question-led content that makes key information easy to understand.</p></div><div><strong>GEO</strong><h3>AI discoverability</h3><p>Clear entities, evidence and context for generative systems.</p></div><div><strong>AI</strong><h3>Workflow automation</h3><p>Python services that turn marketing inputs into decisions.</p></div></div>{% endif %}</div></section></main>
+<footer><div class="container foot"><div class="logo">Muni<i>kumar</i><span>AI</span></div><p>AI-powered growth marketing platform.</p></div></footer>
+<script src="/static/app.js"></script>
+</body></html>
