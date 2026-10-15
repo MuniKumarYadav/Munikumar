@@ -159,7 +159,7 @@ def detect_question_type(question):
 
 def clean_topic(question):
     cleaned = re.sub(
-        r"^(what|why|how|when|where|who|which)\\s+(is|are|do|does|can|to|should|would|will)\\s+",
+        r"^(what|why|how|when|where|who|which)\s+(is|are|do|does|can|to|should|would|will)\s+",
         "", question.strip(), flags=re.I
     )
     return cleaned.rstrip("?.! ").strip() or question.strip().rstrip("?.! ")
