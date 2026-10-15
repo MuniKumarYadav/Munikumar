@@ -39,3 +39,21 @@ async function urlAudit(){
   out('urlResult','Fetching and auditing page…');
   try{const d=await post('/api/url-audit',{url:v});let rec=d.recommendations.length?'<ul>'+d.recommendations.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<div class="good">Core technical checks look healthy.</div>';out('urlResult','<div class="score">'+d.seo_score+'/100</div><div class="mini"><span>Title</span><b>'+esc(d.title||'Missing')+'</b></div><div class="mini"><span>Meta description</span><b>'+(d.description?'Present':'Missing')+'</b></div><div class="mini"><span>H1 count</span><b>'+d.h1s.length+'</b></div><div class="mini"><span>Canonical</span><b>'+(d.canonical?'Present':'Missing')+'</b></div>'+rec)}catch(e){out('urlResult',esc(e.message))}
 }
+
+
+async function answerPreview(){
+  const input=document.getElementById('answerInput');
+  const v=input?.value.trim();
+  if(!v)return out('answerResult','Enter a question to preview.');
+  out('answerResult','Generating an answer preview…');
+  try{
+    const d=await post('/api/answer-preview',{question:v});
+    const schema=JSON.stringify(d.schema,null,2);
+    out('answerResult',
+      '<div class="mini"><span>Intent</span><b>'+esc(d.intent)+'</b></div>'+
+      '<div class="mini"><span>Question type</span><b>'+esc(d.question_type)+'</b></div>'+
+      '<div class="mini"><span>Recommended format</span><b>'+esc(d.format)+'</b></div>'+
+      '<div class="mini answer-copy"><strong>Direct answer ('+d.answer.trim().split(/\\s+/).length+' words)</strong><p>'+esc(d.answer)+'</p></div>'+
+      '<details class="schema-details"><summary>FAQ JSON-LD schema</summary><pre>'+esc(schema)+'</pre></details>');
+  }catch(e){out('answerResult',esc(e.message))}
+}
