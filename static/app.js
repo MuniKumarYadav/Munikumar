@@ -53,7 +53,7 @@ async function answerPreview(){
       '<div class="mini"><span>Intent</span><b>'+esc(d.intent)+'</b></div>'+
       '<div class="mini"><span>Question type</span><b>'+esc(d.question_type)+'</b></div>'+
       '<div class="mini"><span>Recommended format</span><b>'+esc(d.format)+'</b></div>'+
-      '<div class="mini answer-copy"><strong>Direct answer ('+d.answer.trim().split(/\\s+/).length+' words)</strong><p>'+esc(d.answer)+'</p></div>'+
+      '<div class="mini answer-copy"><strong>Direct answer ('+d.answer.trim().split(/\s+/).length+' words)</strong><p>'+esc(d.answer)+'</p></div>'+
       '<details class="schema-details"><summary>FAQ JSON-LD schema</summary><pre>'+esc(schema)+'</pre></details>');
   }catch(e){out('answerResult',esc(e.message))}
 }
