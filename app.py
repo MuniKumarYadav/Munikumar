@@ -138,5 +138,83 @@ def url_audit():
     except Exception as exc:
         return jsonify({"error":f"Audit failed: {exc}"}), 502
 
+
+# --- AEO Answer Preview ---
+
+def detect_question_type(question):
+    low = question.lower().strip()
+    if any(k in low for k in (" vs ", " versus ", "compare", "difference between", "better than", " or ")):
+        return "comparison"
+    if any(k in low for k in ("best ", "top ", "examples of", "types of", "tools for", "ways to", "list of", "ideas")):
+        return "list"
+    if low.startswith("how ") or " how to " in low:
+        return "how"
+    for prefix in ("why ", "when ", "where ", "who "):
+        if low.startswith(prefix):
+            return prefix.strip()
+    if low.startswith(("what ", "which ")):
+        return "what"
+    return "what"
+
+
+def clean_topic(question):
+    cleaned = re.sub(
+        r"^(what|why|how|when|where|who|which)\\s+(is|are|do|does|can|to|should|would|will)\\s+",
+        "", question.strip(), flags=re.I
+    )
+    return cleaned.rstrip("?.! ").strip() or question.strip().rstrip("?.! ")
+
+
+def build_aeo_answer(question, question_type):
+    topic = clean_topic(question)
+    templates = {
+        "how": f"To successfully execute {topic}, begin by defining clear, measurable objectives and auditing your current baseline performance. Next, implement structured workflows using proven industry frameworks, align your content with user search intent, and track key conversion metrics weekly to refine your strategy for sustainable long-term growth.",
+        "why": f"Understanding {topic} is essential because it directly impacts organic visibility, user engagement, and long-term conversion rates. Organizations that prioritize this approach build stronger topical authority, reduce customer acquisition costs, and adapt faster to evolving search engine and AI answer algorithms than competitors relying on outdated tactics.",
+        "comparison": f"When evaluating {topic}, the right choice depends on your budget, team bandwidth, and growth stage. While one approach typically offers faster initial deployment and lower upfront complexity, the alternative provides deeper customization, stronger scalability, and higher long-term return on investment for established marketing teams.",
+        "list": f"The most effective options for {topic} combine technical reliability, ease of implementation, and measurable return on investment. Top-performing teams prioritize solutions that integrate cleanly with existing analytics workflows, support automated reporting, and align directly with high-intent customer acquisition and retention goals across primary channels.",
+        "when": f"The optimal timing for {topic} is once your foundational analytics and core conversion tracking are fully validated. Launching at this stage ensures you capture accurate baseline data, identify early performance bottlenecks quickly, and scale winning campaigns efficiently without wasting budget on unverified traffic sources.",
+        "where": f"You should focus {topic} on high-intent channels where your target audience actively researches solutions and compares providers. Prioritize authoritative search results, structured resource hubs, and conversion-optimized landing pages to capture qualified demand and guide prospects smoothly through your marketing and sales funnel.",
+        "who": f"Responsibility for {topic} typically sits with growth marketers, SEO strategists, and content leads who manage organic acquisition. Cross-functional collaboration between technical developers, subject-matter experts, and analytics specialists ensures that every initiative meets both technical search standards and real-world customer expectations.",
+        "what": f"{topic.capitalize()} is a strategic methodology used to improve digital visibility, audience engagement, and measurable business outcomes. By combining structured data, clear user-focused content, and continuous performance optimization, it helps brands capture high-intent traffic and convert prospects across both traditional search and AI answer engines."
+    }
+    words = templates.get(question_type, templates["what"]).split()
+    filler = ["This", "structured", "approach", "ensures", "consistent", "visibility", "across", "modern", "AI", "search", "platforms."]
+    idx = 0
+    while len(words) < 40:
+        words.append(filler[idx % len(filler)])
+        idx += 1
+    if len(words) > 60:
+        words = words[:60]
+        if not words[-1].endswith("."):
+            words[-1] = words[-1].rstrip(",;:") + "."
+    return " ".join(words)
+
+
+@app.post("/api/answer-preview")
+def answer_preview():
+    data = request.get_json(silent=True) or {}
+    question = str(data.get("question", "")).strip()
+    if not question:
+        return jsonify({"error": "Please enter a question."}), 400
+    question_type = detect_question_type(question)
+    fmt = "list/steps" if question_type in ("how", "list") else ("table" if question_type == "comparison" else "paragraph")
+    answer = build_aeo_answer(question, question_type)
+    try:
+        intent = predict_intent(question).get("intent", "Informational")
+    except Exception:
+        intent = "Informational"
+    formatted_question = question if question.endswith("?") else question + "?"
+    schema_obj = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": formatted_question,
+            "acceptedAnswer": {"@type": "Answer", "text": answer}
+        }]
+    }
+    return jsonify({"question_type": question_type, "answer": answer, "format": fmt, "intent": intent, "schema": schema_obj})
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000, debug=True)
