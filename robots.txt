@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://munikumar.onrender.com/sitemap.xml
+Sitemap: https://munikumar.vercel.app/sitemap.xml
