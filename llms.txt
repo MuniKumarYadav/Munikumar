@@ -1,0 +1,25 @@
+# Munikumar — Digital Marketing, SEO & Growth Strategy
+
+> Official website for Munikumar, a digital marketing growth studio focused on SEO, AEO, GEO, paid acquisition, social media, content, conversion optimization, and analytics.
+
+## Key pages
+
+- [Home](https://munikumar.vercel.app/): Overview of services, approach, and growth planning.
+- [Services](https://munikumar.vercel.app/services/): SEO, paid acquisition, social, content, conversion, analytics, and growth strategy.
+- [About](https://munikumar.vercel.app/about/): Studio approach and operating model.
+- [Insights](https://munikumar.vercel.app/insights/): Educational content on SEO, AEO, GEO, and digital growth.
+- [FAQ](https://munikumar.vercel.app/faq/): Answers to common digital marketing and search questions.
+- [SEO & SMO Report](https://munikumar.vercel.app/seo-report/): Free browser-based SEO and social profile report generator.
+
+## Core topics
+
+- Search Engine Optimization (SEO)
+- Answer Engine Optimization (AEO)
+- Generative Engine Optimization (GEO)
+- Paid advertising and acquisition
+- Content and social media marketing
+- Conversion optimization and analytics
+
+## Notes
+
+Content on this website is informational and describes services and marketing frameworks. Performance examples on the site are illustrative, not guaranteed outcomes.
