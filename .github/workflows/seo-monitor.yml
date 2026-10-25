@@ -1,0 +1,42 @@
+name: Automated SEO Monitor
+
+on:
+  schedule:
+    - cron: "17 8 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: automated-seo-monitor
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Audit public website
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run read-only SEO audit
+        env:
+          SEO_BASE_URL: https://munikumar.vercel.app
+          SEO_MAX_PAGES: "100"
+        run: python scripts/seo_monitor.py
+
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-audit-report
+          path: seo-reports/
+          if-no-files-found: warn
+          retention-days: 30
