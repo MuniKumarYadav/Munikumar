@@ -45,7 +45,7 @@ export default async function handler(req, res) {
     return json(res, 405, { error: "Method not allowed" });
   }
 
-  const token = process.env.WA_ACCESS_TOKEN;
+  const dashboardKey = process.env.WA_DASHBOARD_KEY;\n  if (!dashboardKey || !safeEqual(req.headers["x-dashboard-key"], dashboardKey)) return json(res, 401, { error: "Dashboard authorization required." });\n  const token = process.env.WA_ACCESS_TOKEN;
   const phoneNumberId = process.env.WA_PHONE_NUMBER_ID;
   if (!token || !phoneNumberId) return json(res, 503, { error: "WhatsApp API is not configured. Add the required environment variables in Vercel." });
 
