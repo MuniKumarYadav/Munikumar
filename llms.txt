@@ -10,6 +10,7 @@
 - [Insights](https://munikumar.vercel.app/insights/): Educational content on SEO, AEO, GEO, and digital growth.
 - [FAQ](https://munikumar.vercel.app/faq/): Answers to common digital marketing and search questions.
 - [SEO & SMO Report](https://munikumar.vercel.app/seo-report/): Free browser-based SEO and social profile report generator.
+- [Marketing CRM](https://munikumar.vercel.app/crm/): Free browser-based lead and pipeline tracker with follow-ups, channel reporting and CSV import/export.
 
 ## Core topics
 

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Marketing CRM — Lead &amp; Pipeline Tracker | Munikumar</title>
+<meta name="description" content="Free browser-based marketing CRM. Capture leads, track them through a visual pipeline, schedule follow-ups, see which channels convert and export everything to CSV. No sign-up.">
+<link rel="canonical" href="https://munikumar.vercel.app/crm/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:title" content="Free Marketing CRM — Lead &amp; Pipeline Tracker | Munikumar">
+<meta property="og:description" content="Capture leads, manage your pipeline, schedule follow-ups and see which marketing channels convert.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://munikumar.vercel.app/crm/">
+<meta property="og:image" content="https://munikumar.vercel.app/assets/marketing-dashboard.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Marketing CRM — Lead &amp; Pipeline Tracker | Munikumar">
+<meta name="twitter:description" content="Capture leads, manage your pipeline, schedule follow-ups and see which marketing channels convert.">
+<meta name="twitter:image" content="https://munikumar.vercel.app/assets/marketing-dashboard.svg">
+<meta name="theme-color" content="#050816">
+<link rel="icon" href="/assets/digital-marketing-hero.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css?v=4">
+<link rel="stylesheet" href="/assets/css/crm.css?v=1">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Marketing CRM","url":"https://munikumar.vercel.app/crm/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@id":"https://munikumar.vercel.app/#organization"}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+<div class="wrap">
+<nav aria-label="Primary">
+<a class="logo" href="/">Muni<i>kumar</i></a>
+<div class="navlinks" id="navlinks">
+<a href="/#services">Services</a><a href="/#simulator">ROI Planner</a><a href="/#pricing">Pricing</a><a href="/seo-report/">SEO &amp; SMO Report</a><a class="active" href="/crm/" aria-current="page">CRM</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a>
+</div>
+<a class="nav-cta" href="/#contact">Get a free audit ↗</a>
+<button class="mobile-toggle" aria-label="Toggle navigation" aria-controls="navlinks" aria-expanded="false">☰</button>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+<section class="crm-hero">
+<div class="eyebrow"><b></b> Free tool · No sign-up</div>
+<h1>Marketing <span class="grad">CRM</span></h1>
+<p class="hero-copy">Capture every enquiry, move it through your pipeline, never miss a follow-up and see which marketing channels actually bring in revenue.</p>
+<p class="crm-privacy">🔒 Your leads are stored only in this browser. Nothing is uploaded — export a CSV to back up or move devices.</p>
+</section>
+
+<section class="crm-kpis" aria-label="Summary">
+<div class="kpi card"><small>Total leads</small><strong id="kTotal">0</strong><span id="kTotalSub">&nbsp;</span></div>
+<div class="kpi card"><small>Open pipeline</small><strong id="kPipeline">₹0</strong><span id="kPipelineSub">&nbsp;</span></div>
+<div class="kpi card"><small>Won revenue</small><strong id="kWon">₹0</strong><span id="kWonSub">&nbsp;</span></div>
+<div class="kpi card"><small>Win rate</small><strong id="kRate">—</strong><span>Won ÷ closed deals</span></div>
+<div class="kpi card"><small>Follow-ups due</small><strong id="kDue">0</strong><span id="kDueSub">&nbsp;</span></div>
+</section>
+
+<section class="crm-toolbar card" aria-label="Lead controls">
+<div class="crm-filters">
+<label class="sr" for="q">Search leads</label>
+<input id="q" type="search" placeholder="Search name, company, email, phone…" autocomplete="off">
+<label class="sr" for="fSource">Filter by source</label>
+<select id="fSource"><option value="">All sources</option></select>
+<label class="sr" for="fStage">Filter by stage</label>
+<select id="fStage"><option value="">All stages</option></select>
+</div>
+<div class="crm-actions">
+<div class="seg" role="group" aria-label="View">
+<button type="button" id="vBoard" aria-pressed="true">Pipeline</button>
+<button type="button" id="vTable" aria-pressed="false">Table</button>
+</div>
+<button class="btn alt sm" type="button" id="importBtn">Import CSV</button>
+<button class="btn alt sm" type="button" id="exportBtn">Export CSV</button>
+<button class="btn sm" type="button" id="addBtn">+ Add lead</button>
+<input id="importFile" type="file" accept=".csv,text/csv" hidden>
+</div>
+</section>
+<div class="form-status" id="status" role="status" aria-live="polite"></div>
+
+<section id="empty" class="crm-empty card" hidden>
+<h2>No leads yet</h2>
+<p>Add your first lead, import a CSV, or load a few example leads to see how the pipeline works.</p>
+<div class="buttons"><button class="btn" type="button" id="emptyAdd">+ Add your first lead</button><button class="btn alt" type="button" id="sampleBtn">Load example leads</button></div>
+</section>
+
+<section id="board" class="board" aria-label="Pipeline"></section>
+
+<section id="tableWrap" class="crm-table-wrap card" hidden>
+<table class="crm-table">
+<thead><tr>
+<th><button type="button" data-sort="name">Lead</button></th>
+<th><button type="button" data-sort="source">Source</button></th>
+<th><button type="button" data-sort="service">Interest</button></th>
+<th><button type="button" data-sort="stage">Stage</button></th>
+<th class="num"><button type="button" data-sort="value">Value</button></th>
+<th><button type="button" data-sort="followUp">Follow-up</button></th>
+<th><span class="sr">Actions</span></th>
+</tr></thead>
+<tbody id="rows"></tbody>
+</table>
+<p class="crm-none" id="noMatch" hidden>No leads match your filters.</p>
+</section>
+
+<section class="crm-two">
+<div class="card crm-panel">
+<span class="kicker">Channel performance</span>
+<h2>Leads by source</h2>
+<p class="crm-panel-sub">Lead count, wins and won revenue for each channel.</p>
+<div id="sources" class="sources"></div>
+</div>
+<div class="card crm-panel">
+<span class="kicker">Don't lose the deal</span>
+<h2>Follow-ups</h2>
+<p class="crm-panel-sub">Overdue and upcoming in the next 7 days.</p>
+<ul id="followups" class="followups"></ul>
+</div>
+</section>
+
+<section class="crm-cta card">
+<div><h2>Need more leads in this pipeline?</h2><p>We plan and run SEO, paid and WhatsApp campaigns that fill the top of your funnel.</p></div>
+<div class="buttons"><a class="btn" href="/#contact">Talk to us →</a><a class="btn alt" href="/seo-report/">Run a free SEO report</a></div>
+</section>
+
+</div>
+</main>
+
+<dialog id="leadDialog" class="crm-dialog" aria-labelledby="dlgTitle">
+<form id="leadForm" method="dialog" novalidate>
+<div class="dlg-head"><h2 id="dlgTitle">Add lead</h2><button type="button" class="dlg-x" id="dlgClose" aria-label="Close">✕</button></div>
+<div class="dlg-grid">
+<div class="f"><label for="lName">Name *</label><input id="lName" required maxlength="80" autocomplete="off"></div>
+<div class="f"><label for="lCompany">Company</label><input id="lCompany" maxlength="80" autocomplete="off"></div>
+<div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" maxlength="120" autocomplete="off"></div>
+<div class="f"><label for="lPhone">Phone (with country code)</label><input id="lPhone" type="tel" maxlength="20" placeholder="91XXXXXXXXXX" autocomplete="off"></div>
+<div class="f"><label for="lSource">Source</label><select id="lSource"></select></div>
+<div class="f"><label for="lService">Interested in</label><select id="lService"></select></div>
+<div class="f"><label for="lValue">Deal value (₹)</label><input id="lValue" type="number" min="0" step="1" inputmode="numeric" placeholder="0"></div>
+<div class="f"><label for="lStage">Stage</label><select id="lStage"></select></div>
+<div class="f"><label for="lFollow">Next follow-up</label><input id="lFollow" type="date"></div>
+<div class="f wide"><label for="lNotes">Notes</label><textarea id="lNotes" rows="3" maxlength="1000"></textarea></div>
+</div>
+<p class="form-status err" id="dlgErr" role="alert"></p>
+<div class="dlg-foot">
+<button type="button" class="btn alt sm danger" id="dlgDelete" hidden>Delete lead</button>
+<span class="grow"></span>
+<button type="button" class="btn alt sm" id="dlgCancel">Cancel</button>
+<button type="submit" class="btn sm">Save lead</button>
+</div>
+</form>
+</dialog>
+
+<footer>
+<div class="wrap">
+<div class="footer-bottom"><span>© 2026 Munikumar — Growth Marketing Studio</span><span><a href="/">Home</a> · <a href="/services/">Services</a> · <a href="/seo-report/">SEO report</a> · <a href="/#contact">Contact</a></span></div>
+</div>
+</footer>
+<script src="/assets/js/crm.js?v=1" defer></script>
+</body>
+</html>
