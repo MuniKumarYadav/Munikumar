@@ -260,3 +260,39 @@ footer{border-top:1px solid var(--line);padding:50px 0 40px;color:#718198;font-s
   #services .service.reveal.visible{animation:none!important}
   #services .service .icon{transition:none!important}
 }
+
+
+/* Reliable scroll-triggered motion for the services section */
+#services .section-head,
+#services .answer-block,
+#services .service{opacity:1;transform:none}
+#services .services-motion-in.section-head{animation:servicesHeadingReveal .85s cubic-bezier(.2,.75,.25,1) both}
+#services .services-motion-in.answer-block{animation:servicesAnswerReveal .8s cubic-bezier(.2,.75,.25,1) both}
+#services .services-motion-in.service{animation:servicesCardReveal .78s cubic-bezier(.2,.75,.25,1) both}
+#services .services-motion-in.service:nth-child(1){animation-delay:.02s}
+#services .services-motion-in.service:nth-child(2){animation-delay:.12s}
+#services .services-motion-in.service:nth-child(3){animation-delay:.22s}
+#services .services-motion-in.service:nth-child(4){animation-delay:.08s}
+#services .services-motion-in.service:nth-child(5){animation-delay:.18s}
+#services .services-motion-in.service:nth-child(6){animation-delay:.28s}
+@keyframes servicesHeadingReveal{
+  0%{opacity:0;transform:translate3d(0,28px,0) scale3d(.96,.9,1)}
+  68%{opacity:1;transform:translate3d(0,-5px,0) scale3d(1.015,1.035,1)}
+  84%{transform:translate3d(0,2px,0) scale3d(.995,.99,1)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale3d(1,1,1)}
+}
+@keyframes servicesAnswerReveal{
+  0%{opacity:0;transform:translate3d(0,24px,0) scale3d(.94,.88,1)}
+  70%{opacity:1;transform:translate3d(0,-5px,0) scale3d(1.02,1.04,1)}
+  86%{transform:translate3d(0,2px,0) scale3d(.995,.99,1)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale3d(1,1,1)}
+}
+@keyframes servicesCardReveal{
+  0%{opacity:0;transform:translate3d(0,38px,0) scale3d(.93,.88,1)}
+  72%{opacity:1;transform:translate3d(0,-6px,0) scale3d(1.02,1.035,1)}
+  88%{transform:translate3d(0,2px,0) scale3d(.995,.99,1)}
+  100%{opacity:1;transform:translate3d(0,0,0) scale3d(1,1,1)}
+}
+@media(prefers-reduced-motion:reduce){
+  #services .services-motion-in{animation:none!important;opacity:1!important;transform:none!important}
+}
