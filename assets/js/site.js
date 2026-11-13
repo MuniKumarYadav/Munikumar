@@ -5,6 +5,32 @@ document.documentElement.classList.add('js');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const money = (n) => '₹' + Math.round(n).toLocaleString('en-IN');
 
+  // Hero word rotator: keeps rotating even when reduced-motion is enabled.
+  // Reduced-motion users get instant text changes without transition effects.
+  const rot = $('.rotator');
+  if (rot) {
+    const words = (rot.dataset.words || 'grow|rank|be found|scale')
+      .split('|').map((word) => word.trim()).filter(Boolean);
+    let current = Math.max(0, words.indexOf(rot.textContent.trim()));
+    if (words.length > 1) {
+      window.setInterval(() => {
+        if (document.hidden) return;
+        const next = (current + 1) % words.length;
+        if (reduceMotion) {
+          current = next;
+          rot.textContent = words[current];
+          return;
+        }
+        rot.classList.add('is-changing');
+        window.setTimeout(() => {
+          current = next;
+          rot.textContent = words[current];
+          rot.classList.remove('is-changing');
+        }, 180);
+      }, 2800);
+    }
+  }
+
   // Scroll progress, sticky header, back-to-top
   const progress = document.createElement('div');
   progress.className = 'progress';
@@ -74,24 +100,6 @@ document.documentElement.classList.add('js');
     card.style.setProperty('--mx', e.clientX - r.left + 'px');
     card.style.setProperty('--my', e.clientY - r.top + 'px');
   }));
-
-  // Hero word rotator
-  const rot = $('.rotator');
-  if (rot && !reduceMotion) {
-    const words = rot.dataset.words.split('|');
-    let w = 0, i = words[0].length, deleting = true;
-    const tick = () => {
-      const word = words[w];
-      i += deleting ? -1 : 1;
-      rot.textContent = word.slice(0, i);
-      let delay = deleting ? 45 : 90;
-      if (deleting && i === 0) { deleting = false; w = (w + 1) % words.length; }
-      else if (!deleting && i === words[w].length) { deleting = true; delay = 1800; }
-      if (!deleting && i === 0) rot.textContent = '';
-      setTimeout(tick, delay);
-    };
-    setTimeout(tick, 2000);
-  }
 
   // Counters
   const animateCounter = (el) => {
