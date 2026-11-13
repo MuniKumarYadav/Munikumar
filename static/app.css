@@ -11,3 +11,35 @@ footer{border-top:1px solid var(--line);padding:42px 0;color:#73839b}.foot{displ
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.system-grid,.pricing{grid-template-columns:1fr 1fr}.nav nav a:not(.nav-cta){display:none}}
 @media(max-width:620px){.container{width:min(100% - 28px,1180px)}.hero{padding-top:55px}.section{padding:70px 0}.tool-grid,.system-grid,.pricing{grid-template-columns:1fr}.row{flex-direction:column}.row button{height:44px}.foot{display:block}.question h1{font-size:50px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Squash & stretch for the dashboard hero panel */
+.hero-panel{
+  transform-origin:50% 100%;
+  animation:dashboardSquashStretch 5.8s cubic-bezier(.36,.07,.19,.97) infinite;
+  will-change:transform;
+}
+@keyframes dashboardSquashStretch{
+  0%,100%{transform:translate3d(0,0,0) scale3d(1,1,1)}
+  8%{transform:translate3d(0,6px,0) scale3d(1.025,.975,1)}
+  16%{transform:translate3d(0,-10px,0) scale3d(.98,1.035,1)}
+  25%{transform:translate3d(0,-13px,0) scale3d(1.01,.99,1)}
+  36%{transform:translate3d(0,-6px,0) scale3d(1,1,1)}
+  50%{transform:translate3d(0,0,0) scale3d(1,1,1)}
+}
+.hero-panel .orb{
+  transform-origin:center;
+  animation:orbSquashStretch 5.8s ease-in-out infinite;
+}
+@keyframes orbSquashStretch{
+  0%,100%{transform:scale3d(1,1,1)}
+  16%{transform:scale3d(1.12,.9,1)}
+  30%{transform:scale3d(.92,1.12,1)}
+  44%{transform:scale3d(1,1,1)}
+}
+.primary:active,.secondary:active,.pills button:active{
+  transform:translateY(1px) scale3d(1.06,.9,1);
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-panel,.hero-panel .orb{animation:none!important;transform:none!important;will-change:auto}
+}
