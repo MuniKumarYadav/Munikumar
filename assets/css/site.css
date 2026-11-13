@@ -296,3 +296,135 @@ footer{border-top:1px solid var(--line);padding:50px 0 40px;color:#718198;font-s
 @media(prefers-reduced-motion:reduce){
   #services .services-motion-in{animation:none!important;opacity:1!important;transform:none!important}
 }
+
+
+/* Premium animated hero — visual depth, gentle motion and stable rotating words */
+.hero{
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:min(58vw,680px);
+  aspect-ratio:1;
+  top:-8%;
+  right:2%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(91,140,255,.17),rgba(155,124,255,.08) 42%,transparent 72%);
+  filter:blur(12px);
+  pointer-events:none;
+  animation:heroAmbient 12s ease-in-out infinite alternate;
+}
+.hero-question{
+  animation:heroTextEntrance .9s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-question h1{
+  text-wrap:balance;
+}
+.rotator{
+  min-width:8ch;
+  white-space:nowrap;
+  text-align:left;
+  transform-origin:left center;
+  transition:opacity .22s ease,transform .22s cubic-bezier(.2,.8,.2,1);
+  will-change:opacity,transform;
+}
+.rotator.is-changing{
+  opacity:0;
+  transform:translate3d(0,.18em,0);
+}
+.hero-visual{
+  isolation:isolate;
+  perspective:1100px;
+}
+.hero-visual::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:-8%;
+  border-radius:34px;
+  background:radial-gradient(ellipse at 50% 48%,rgba(56,217,255,.19),rgba(91,140,255,.14) 38%,transparent 72%);
+  filter:blur(30px);
+  opacity:.8;
+  animation:heroGlow 7s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+.hero-visual>img{
+  position:relative;
+  z-index:1;
+  transform-origin:50% 50%;
+  animation:heroImageBreath 9s cubic-bezier(.45,0,.55,1) infinite alternate;
+  will-change:transform;
+  backface-visibility:hidden;
+}
+.float-card{
+  z-index:2;
+}
+.float-card.top{animation-delay:-1.2s}
+.float-card.bottom{animation-delay:-4.2s}
+.hero .buttons .btn{
+  position:relative;
+  overflow:hidden;
+}
+.hero .buttons .btn:not(.alt)::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  bottom:-40%;
+  left:-45%;
+  width:28%;
+  transform:translateX(-180%) rotate(18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  transition:transform .7s ease;
+  pointer-events:none;
+}
+.hero .buttons .btn:not(.alt):hover::after{
+  transform:translateX(620%) rotate(18deg);
+}
+.hero-stats>div{
+  animation:heroStatEntrance .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-stats>div:nth-child(2){animation-delay:.12s}
+.hero-stats>div:nth-child(3){animation-delay:.24s}
+
+@keyframes heroAmbient{
+  from{transform:translate3d(0,0,0) scale(.92);opacity:.55}
+  to{transform:translate3d(-4%,5%,0) scale(1.08);opacity:1}
+}
+@keyframes heroGlow{
+  from{transform:scale(.94);opacity:.52}
+  to{transform:scale(1.08);opacity:.95}
+}
+@keyframes heroImageBreath{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(0,-7px,0) scale(1.045)}
+}
+@keyframes heroTextEntrance{
+  from{opacity:0;transform:translate3d(0,22px,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes heroStatEntrance{
+  from{opacity:0;transform:translate3d(0,12px,0)}
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+@media(max-width:900px){
+  .hero::before{width:75vw;right:-12%;top:2%}
+  .hero-visual::before{inset:-4%}
+}
+@media(max-width:640px){
+  .rotator{min-width:7.5ch}
+  .hero-visual>img{animation-duration:11s}
+  .float-card.top{right:-5px}
+  .float-card.bottom{left:-5px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.hero-question,.hero-visual::before,.hero-visual>img,
+  .hero-stats>div,.hero .buttons .btn::after{
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+  }
+  .rotator{animation:none!important;border-right:0}
+  .rotator.is-changing{opacity:1;transform:none}
+}
