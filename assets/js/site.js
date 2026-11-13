@@ -49,6 +49,25 @@ document.documentElement.classList.add('js');
   }), { threshold: 0.12 });
   $$('.reveal').forEach((el) => io.observe(el));
 
+
+  // Dedicated, reliable entrance trigger for the "What does Muni Kumar do?" section
+  const servicesSection = $('#services');
+  if (servicesSection) {
+    const motionTargets = $('.section-head, .answer-block, .service', servicesSection);
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      motionTargets.forEach((el) => el.classList.add('services-motion-in'));
+    } else {
+      const servicesObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('services-motion-in');
+          servicesObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -35px 0px' });
+      motionTargets.forEach((el) => servicesObserver.observe(el));
+    }
+  }
+
   // Card spotlight
   $$('.service').forEach((card) => card.addEventListener('pointermove', (e) => {
     const r = card.getBoundingClientRect();
