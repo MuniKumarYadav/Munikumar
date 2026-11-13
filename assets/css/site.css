@@ -188,3 +188,75 @@ footer{border-top:1px solid var(--line);padding:50px 0 40px;color:#718198;font-s
 @media(prefers-reduced-motion:reduce){
   .hero-visual>img,.float-card{animation:none!important;transform:none!important;will-change:auto}
 }
+
+
+/* "What does Muni Kumar do?" — section reveal choreography */
+#services .section-head .kicker{
+  transform-origin:left center;
+}
+#services .section-head.visible .kicker{
+  animation:servicesKickerIn .55s cubic-bezier(.2,.8,.2,1) both;
+}
+#services .section-head.visible h2{
+  transform-origin:left bottom;
+  animation:servicesTitleIn .85s cubic-bezier(.2,.8,.2,1) .08s both;
+}
+#services .section-head.visible>p{
+  animation:servicesCopyIn .75s ease .2s both;
+}
+#services .answer-block{
+  transform-origin:50% 100%;
+}
+#services .answer-block.visible{
+  animation:servicesAnswerPop .8s cubic-bezier(.2,.8,.2,1) both;
+}
+#services .service.reveal.visible{
+  animation:servicesCardIn .72s cubic-bezier(.2,.8,.2,1) both;
+}
+#services .service.reveal.visible:nth-child(1){animation-delay:.02s}
+#services .service.reveal.visible:nth-child(2){animation-delay:.12s}
+#services .service.reveal.visible:nth-child(3){animation-delay:.22s}
+#services .service.reveal.visible:nth-child(4){animation-delay:.08s}
+#services .service.reveal.visible:nth-child(5){animation-delay:.18s}
+#services .service.reveal.visible:nth-child(6){animation-delay:.28s}
+#services .service .icon{
+  transform-origin:50% 100%;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1);
+}
+#services .service:hover .icon{
+  transform:translateY(-4px) scale3d(1.12,.9,1);
+}
+@keyframes servicesKickerIn{
+  from{opacity:0;transform:translateY(12px) scale(.94)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes servicesTitleIn{
+  0%{opacity:0;transform:translateY(24px) scale(.96,.88)}
+  65%{opacity:1;transform:translateY(-4px) scale(1.015,1.035)}
+  82%{transform:translateY(2px) scale(.995,.985)}
+  100%{opacity:1;transform:translateY(0) scale(1,1)}
+}
+@keyframes servicesCopyIn{
+  from{opacity:0;transform:translateX(22px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes servicesAnswerPop{
+  0%{opacity:0;transform:translateY(22px) scale(.96,.9)}
+  68%{opacity:1;transform:translateY(-5px) scale(1.015,1.035)}
+  84%{transform:translateY(2px) scale(.995,.99)}
+  100%{opacity:1;transform:translateY(0) scale(1,1)}
+}
+@keyframes servicesCardIn{
+  0%{opacity:0;transform:translateY(34px) scale(.94,.9)}
+  72%{opacity:1;transform:translateY(-6px) scale(1.015,1.025)}
+  88%{transform:translateY(2px) scale(.995,.99)}
+  100%{opacity:1;transform:translateY(0) scale(1,1)}
+}
+@media(prefers-reduced-motion:reduce){
+  #services .section-head.visible .kicker,
+  #services .section-head.visible h2,
+  #services .section-head.visible>p,
+  #services .answer-block.visible,
+  #services .service.reveal.visible{animation:none!important}
+  #services .service .icon{transition:none!important}
+}
