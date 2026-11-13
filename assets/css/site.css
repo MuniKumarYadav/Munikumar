@@ -154,3 +154,37 @@ footer{border-top:1px solid var(--line);padding:50px 0 40px;color:#718198;font-s
 .cta{padding:30px 22px}.section{padding:70px 0}.float-card{display:none}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+
+
+/* Squash & stretch — subtle hero motion with a soft landing */
+.hero-visual>img{
+  transform-origin:50% 100%;
+  animation:heroSquashStretch 5.8s cubic-bezier(.36,.07,.19,.97) infinite;
+  will-change:transform;
+}
+@keyframes heroSquashStretch{
+  0%,100%{transform:translate3d(0,0,0) scale3d(1,1,1)}
+  8%{transform:translate3d(0,7px,0) scale3d(1.035,.965,1)}
+  16%{transform:translate3d(0,-12px,0) scale3d(.975,1.045,1)}
+  24%{transform:translate3d(0,-15px,0) scale3d(1.012,.988,1)}
+  34%{transform:translate3d(0,-8px,0) scale3d(1,1,1)}
+  48%{transform:translate3d(0,0,0) scale3d(1,1,1)}
+}
+.float-card{
+  transform-origin:50% 100%;
+  animation:floatSquashStretch 6s cubic-bezier(.36,.07,.19,.97) infinite;
+}
+.float-card.bottom{animation-delay:-3s}
+@keyframes floatSquashStretch{
+  0%,100%{transform:translate3d(0,0,0) scale3d(1,1,1)}
+  13%{transform:translate3d(0,5px,0) scale3d(1.08,.92,1)}
+  27%{transform:translate3d(0,-12px,0) scale3d(.96,1.06,1)}
+  39%{transform:translate3d(0,-14px,0) scale3d(1.02,.98,1)}
+  53%{transform:translate3d(0,-8px,0) scale3d(1,1,1)}
+}
+.btn:active,.hero-choices a:active{
+  transform:translateY(1px) scale3d(1.06,.9,1);
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-visual>img,.float-card{animation:none!important;transform:none!important;will-change:auto}
+}
